@@ -53,9 +53,10 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+alias ll='ls -lsa'
+alias doc='cd ~/Documents/Obsidian/Personal/ && nvim'
+alias findn='find . -name'
+alias nvimc='cd ~/.config/nvim && nvim'
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -71,3 +72,7 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 export PATH=$PATH:/usr/local/go/bin
+export LD_LIBRARY_PATH=/usr/local/lib:
+
+
+fastfetch
