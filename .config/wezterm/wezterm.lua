@@ -6,6 +6,15 @@ local config = wezterm.config_builder()
 config.color_scheme = "tokyonight_moon"
 config.font = wezterm.font("SauceCodePro Nerd Font")
 config.use_ime = true
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.wsl_domains = {
+		{
+			name = "Debian",
+			distribution = "Debian",
+			default_cwd = "~",
+		},
+	}
+end
 
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
