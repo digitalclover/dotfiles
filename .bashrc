@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -52,11 +54,15 @@ fi
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-
 alias ll='ls -lsa'
-alias doc='cd ~/Documents/Obsidian/Personal/ && nvim'
 alias findn='find . -name'
-alias nvimc='cd ~/.config/nvim && nvim'
+
+if [ -f ~/.bash_aliases ]; then
+   . ~/.bash_aliases
+fi
+if [ -f ~/.bash_exports ]; then
+   . ~/.bash_exports
+fi
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -65,15 +71,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
-export PATH=$PATH:/usr/local/go/bin
-export LD_LIBRARY_PATH=/usr/local/lib:
-
 
 if command -v fastfetch &> /dev/null; then
     fastfetch
