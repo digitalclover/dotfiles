@@ -14,6 +14,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 			default_cwd = "~",
 		},
 	}
+	config.default_domain = "Debian"
 end
 
 wezterm.on("gui-startup", function(cmd)
@@ -82,15 +83,15 @@ wezterm.on("update-right-status", function(window, pane)
 
 	-- Color palette for the backgrounds of each cell
 	local colors = {
-		"#105DCD",
-		"#242424",
-		"#523D3D",
-		"#A09179",
-		"#545454",
+		"#191B29",
+		"#222436",
+		"#545c7e",
+		"#1e2030",
+		"#3e68d7",
 	}
 
 	-- Foreground color for the text across the fade
-	local text_fg = "#c0c0c0"
+	local text_fg = "#c8d3f5"
 
 	-- The elements to be formatted
 	local elements = {}
