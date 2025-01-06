@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "tokyonight_moon"
 config.font = wezterm.font("SauceCodePro Nerd Font")
+config.use_ime = true
 
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
@@ -72,11 +73,11 @@ wezterm.on("update-right-status", function(window, pane)
 
 	-- Color palette for the backgrounds of each cell
 	local colors = {
-		"#3c1361",
-		"#52307c",
-		"#663a82",
-		"#7c5295",
-		"#b491c8",
+		"#105DCD",
+		"#242424",
+		"#523D3D",
+		"#A09179",
+		"#545454",
 	}
 
 	-- Foreground color for the text across the fade
@@ -86,6 +87,10 @@ wezterm.on("update-right-status", function(window, pane)
 	local elements = {}
 	-- How many cells have been formatted
 	local num_cells = 0
+
+	table.insert(elements, { Foreground = { Color = colors[1] } })
+	table.insert(elements, { Background = { Color = "rgba(0, 0,0,0)" } })
+	table.insert(elements, { Text = SOLID_LEFT_ARROW })
 
 	-- Translate a cell into elements
 	function push(text, is_last)

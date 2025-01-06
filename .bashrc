@@ -75,4 +75,6 @@ export PATH=$PATH:/usr/local/go/bin
 export LD_LIBRARY_PATH=/usr/local/lib:
 
 
-fastfetch
+if command -v fastfetch &> /dev/null; then
+    fastfetch
+fi
