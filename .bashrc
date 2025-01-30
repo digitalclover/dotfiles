@@ -57,11 +57,11 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias ll='ls -lsa'
 alias findn='find . -name'
 
-if [ -f ~/.bash_aliases ]; then
-   . ~/.bash_aliases
-fi
 if [ -f ~/.bash_exports ]; then
    . ~/.bash_exports
+fi
+if [ -f ~/.bash_aliases ]; then
+   . ~/.bash_aliases
 fi
 
 if ! shopt -oq posix; then
