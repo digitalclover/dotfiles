@@ -450,6 +450,15 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+         denols = {
+           on_attach = on_attach,
+           root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+         },
+         ts_ls = {
+           on_attach = on_attach,
+           root_dir = require('lspconfig').util.root_pattern 'package.json',
+           single_file_support = false,
+         },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
