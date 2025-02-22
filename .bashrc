@@ -72,8 +72,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if command -v fastfetch &> /dev/null; then
+height="$(tput lines)"
+
+if [ $height -ge 32 ] && command -v fastfetch &> /dev/null; then
     fastfetch
 fi
 
-set -o vi
