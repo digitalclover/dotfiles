@@ -449,15 +449,15 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-         denols = {
-           on_attach = on_attach,
-           root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
-         },
-         ts_ls = {
-           on_attach = on_attach,
-           root_dir = require('lspconfig').util.root_pattern 'package.json',
-           single_file_support = false,
-         },
+        denols = {
+          on_attach = on_attach,
+          root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+        },
+        ts_ls = {
+          on_attach = on_attach,
+          root_dir = require('lspconfig').util.root_pattern 'package.json',
+          single_file_support = false,
+        },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -709,17 +709,17 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
       require('mini.icons').setup()
-      require('mini.files').setup {
-        windows = {
-          preview = true,
-        },
-      }
-      vim.keymap.set('n', '<leader>e', function()
-        require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
-      end, { desc = 'Open mini.files (directory of current file)' })
-      vim.keymap.set('n', '<leader>E', function()
-        require('mini.files').open(vim.loop.cwd(), true)
-      end, { desc = 'Open mini.files (cwd)' })
+      -- require('mini.files').setup {
+      --   windows = {
+      --     preview = true,
+      --   },
+      -- }
+      -- vim.keymap.set('n', '<leader>e', function()
+      --   require('mini.files').open(vim.api.nvim_buf_get_name(0), true)
+      -- end, { desc = 'Open mini.files (directory of current file)' })
+      -- vim.keymap.set('n', '<leader>E', function()
+      --   require('mini.files').open(vim.loop.cwd(), true)
+      -- end, { desc = 'Open mini.files (cwd)' })
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --

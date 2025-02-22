@@ -21,3 +21,5 @@ Thumbs.db
 .local/
 .bash_exports
 .bash_aliases
+# Hide ollama plugin since that is bespoke to the machine's local model
+ollama.lua
