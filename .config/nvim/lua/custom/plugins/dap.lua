@@ -12,7 +12,38 @@ return {
     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
   },
-        opts = {},
+        opts = {
+          layouts = {
+            {
+              elements = {
+                {
+                  id = 'breakpoints',
+                  size = 0.33,
+                },
+                {
+                  id = 'stacks',
+                  size = 0.33,
+                },
+                {
+                  id = 'watches',
+                  size = 0.33,
+                },
+              },
+              position = 'left',
+              size = 40,
+            },
+            {
+              elements = {
+                {
+                  id = 'console',
+                  size = 1.0,
+                },
+              },
+              position = 'bottom',
+              size = 12,
+            },
+          },
+        },
         config = function(_, opts)
           local dap = require 'dap'
           local dapui = require 'dapui'
@@ -20,12 +51,12 @@ return {
           dap.listeners.after.event_initialized['dapui_config'] = function()
             dapui.open {}
           end
-          dap.listeners.before.event_terminated['dapui_config'] = function()
-            dapui.close {}
-          end
-          dap.listeners.before.event_exited['dapui_config'] = function()
-            dapui.close {}
-          end
+          -- dap.listeners.before.event_terminated['dapui_config'] = function()
+          --   dapui.close {}
+          -- end
+          -- dap.listeners.before.event_exited['dapui_config'] = function()
+          --   dapui.close {}
+          -- end
         end,
       },
       -- virtual text for the debugger
@@ -37,20 +68,6 @@ return {
         'microsoft/vscode-js-debug',
         build = 'npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out',
         version = '1.*',
-      },
-      {
-        'mxsdev/nvim-dap-vscode-js',
-        config = function()
-          require('dap-vscode-js').setup {
-            -- node_path = 'node',
-            debugger_path = vim.fn.resolve(vim.fn.stdpath 'data' .. '/lazy/vscode-js-debug'),
-            adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
-            -- debugger_cmd = { 'js-debug-adapter' },
-            -- log_file_path = '(stdpath cache)/dap_vscode_js.log',
-            -- log_file_level = 0,
-            -- log_console_level = vim.log.levels.ERROR,
-          }
-        end,
       },
     },
 
@@ -89,6 +106,15 @@ return {
       --   vim.fn.sign_define('Dap' .. name, { text = sign[1], texthl = sign[2] or 'DiagnosticInfo', linehl = sign[3], numhl = sign[3] })
       -- end
       local dap = require 'dap'
+      dap.adapters['pwa-node'] = {
+        type = 'server',
+        host = 'localhost',
+        port = '${port}',
+        executable = {
+          command = 'js-debug-adapter',
+          args = { '${port}' },
+        },
+      }
 
       -- setup dap config by VsCode launch.json file
       local vscode = require 'dap.ext.vscode'
