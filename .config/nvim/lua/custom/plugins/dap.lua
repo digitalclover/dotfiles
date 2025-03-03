@@ -120,7 +120,9 @@ return {
       local vscode = require 'dap.ext.vscode'
       local json = require 'plenary.json'
       vscode.json_decode = function(str)
-        return vim.json.decode(json.json_strip_comments(str))
+        local project_root = vim.fn.getcwd()
+        local modified_str = str:gsub('%${workspaceRoot}', project_root)
+        return vim.json.decode(json.json_strip_comments(modified_str, {}))
       end
       for _, language in ipairs { 'typescript', 'javascript' } do
         dap.configurations[language] = {
