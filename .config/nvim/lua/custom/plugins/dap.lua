@@ -21,7 +21,7 @@ return {
             {
               elements = {
                 {
-                  id = 'breakpoints',
+                  id = 'scopes',
                   size = 0.33,
                 },
                 {
@@ -29,7 +29,7 @@ return {
                   size = 0.33,
                 },
                 {
-                  id = 'watches',
+                  id = 'breakpoint',
                   size = 0.33,
                 },
               },
