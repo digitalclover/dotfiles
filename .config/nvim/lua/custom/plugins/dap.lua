@@ -1,6 +1,8 @@
 vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef', bg = '#31353f' })
 vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379', bg = '#31353f' })
+vim.api.nvim_command 'highlight DapBreakpointColor guifg=#FC0000'
+vim.fn.sign_define('DapBreakpoint', { text = '⬢', hexthl = 'DapBreakpointColor', linehl = '', numhl = '' })
 
 return {
   {
@@ -55,12 +57,6 @@ return {
           dap.listeners.after.event_initialized['dapui_config'] = function()
             dapui.open {}
           end
-          -- dap.listeners.before.event_terminated['dapui_config'] = function()
-          --   dapui.close {}
-          -- end
-          -- dap.listeners.before.event_exited['dapui_config'] = function()
-          --   dapui.close {}
-          -- end
         end,
       },
       -- virtual text for the debugger

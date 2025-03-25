@@ -25,39 +25,6 @@ return {
       desc = 'Add buffer to Harpoon list',
     },
     {
-      '<leader>hd',
-      function() end,
-      desc = 'Delete',
-    },
-    {
-      '<leader>hdj',
-      function()
-        require('harpoon'):list():remove_at(1)
-      end,
-      desc = 'Delete buffer [j] to Harpoon list',
-    },
-    {
-      '<leader>hdk',
-      function()
-        require('harpoon'):list():remove_at(2)
-      end,
-      desc = 'Delete buffer [k] to Harpoon list',
-    },
-    {
-      '<leader>hdl',
-      function()
-        require('harpoon'):list():remove_at(3)
-      end,
-      desc = 'Delete buffer [l] to Harpoon list',
-    },
-    {
-      '<leader>hd;',
-      function()
-        require('harpoon'):list():remove_at(4)
-      end,
-      desc = 'Delete buffer [;] to Harpoon list',
-    },
-    {
       '<C-j>',
       function()
         require('harpoon'):list():select(1)

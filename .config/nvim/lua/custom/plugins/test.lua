@@ -2,10 +2,6 @@ return {
   'nvim-neotest/neotest',
   dependencies = { 'nvim-neotest/nvim-nio', 'nvim-neotest/neotest-jest' },
   opts = {
-    -- Can be a list of adapters like what neotest expects,
-    -- or a list of adapter names,
-    -- or a table of adapter names, mapped to adapter configs.
-    -- The adapter will then be automatically loaded with the config.
     adapters = {
       ['neotest-jest'] = {
         jestCommand = 'npm run test --',
@@ -16,13 +12,6 @@ return {
         end,
       },
     },
-    -- Example for loading neotest-golang with a custom config
-    -- adapters = {
-    --   ["neotest-golang"] = {
-    --     go_test_args = { "-v", "-race", "-count=1", "-timeout=60s" },
-    --     dap_go_enabled = true,
-    --   },
-    -- },
     status = { virtual_text = true },
     output = { open_on_run = true },
     quickfix = {
@@ -36,7 +25,6 @@ return {
     vim.diagnostic.config({
       virtual_text = {
         format = function(diagnostic)
-          -- Replace newline and tab characters with space for more compact diagnostics
           local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
           return message
         end,
@@ -80,6 +68,7 @@ return {
     { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File (Neotest)" },
     { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "Run All Test Files (Neotest)" },
     { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest (Neotest)" },
+    { "<leader>td", function() require("neotest").run.run({ strategy = "dap"}) end, desc = "Debug Nearest (Neotest)" },
     { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last (Neotest)" },
     { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary (Neotest)" },
     { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output (Neotest)" },
