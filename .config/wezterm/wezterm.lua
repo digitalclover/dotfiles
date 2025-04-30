@@ -1,11 +1,8 @@
 local wezterm = require("wezterm")
--- local background = require("backgrounds")
 local mux = wezterm.mux
 
 local config = wezterm.config_builder()
-
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
+local backgrounds = require("backgrounds")
 
 function tab_title(tab_info)
 	local title = tab_info.tab_title
@@ -15,33 +12,18 @@ function tab_title(tab_info)
 	return tab_info.active_pane.title
 end
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	local edge_background = "#1a1b26"
-	local background = "#24283b"
-	local foreground = "#565f89"
-
-	if tab.is_active then
-		background = "#1a1b26"
-		foreground = "#a9b1d6"
+function generateRandomIndex(backgrounds)
+	local len = #backgrounds
+	if len == 0 then
+		return 0
 	end
+	local index = math.floor(math.random(len))
+	return index
+end
 
-	local edge_foreground = background
-
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local title = tab_title(tab)
-
 	title = wezterm.truncate_right(title, max_width - 2)
-
-	return {
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_LEFT_ARROW },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
-		{ Text = title },
-		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = SOLID_RIGHT_ARROW },
-	}
 end)
 
 config.enable_wayland = false
@@ -69,7 +51,9 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "Debian"
 end
 
-config.background = background
+local bg_index = generateRandomIndex(backgrounds)
+config.background = backgrounds[bg_index]
+
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
