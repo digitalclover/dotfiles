@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+if [ -f .nvmrc ]; then
+  TARGET_VERSION="$(cat .nvmrc)"
+elif (( $# == 0 )); then
+  TARGET_VERSION="$(read -t 1 -rd "" v; echo "$v";)"
+else
+  TARGET_VERSION="${1}"
+fi
+
+if [[ $TARGET_VERSION == "" ]];
+then
+  echo "No target version provided"
+  exit 1
+fi
+
+if [[ $TARGET_VERSION = "list" ]] || [[ $TARGET_VERSION = "ls" ]]; then
+  for v in $(ls ~/.nodejs/versions/); do
+    if [[ $v != "use" ]]; then
+      echo "$v"
+    fi
+  done
+  exit 0
+fi
+
+FOUND_DIR=$(find ~/.nodejs/versions/ -type d -name *"$TARGET_VERSION"* | head -n1)
+
+if [ -z $FOUND_DIR ]; then
+  echo "Target node version $TARGET_VERSION could not be found."
+  exit 1
+fi
+
+cd /usr/local/bin/
+
+for dir in $(ls "$FOUND_DIR/bin/");
+do
+  echo "Targeting $FOUND_DIR/bin/$dir"
+  sudo ln -fs "$FOUND_DIR/bin/$dir" $dir
+done
+
+NODE_VERSION=$(node -v)
+NPM_VERSION=$(npm -v)
+echo "Now switched to:"
+echo "- Node version: $NODE_VERSION"
+echo "- NPM version: $NPM_VERSION"
