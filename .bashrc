@@ -54,7 +54,13 @@ fi
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-alias ll='ls -lsa'
+if [ -x ~/.cargo/bin/eza ]; then
+    alias ll='eza -la --icons'
+    alias lt='eza -TL 2'
+else
+    alias ll='ls -lsa'
+    alias lt='echo "Cannot list directory tree"'
+fi
 alias findn='find . -name'
 
 if [ -f ~/.bash_exports ]; then
