@@ -271,10 +271,6 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
       local servers = {
-        denols = {
-          on_attach = on_attach,
-          root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
-        },
         ts_ls = {
           on_attach = on_attach,
           root_dir = require('lspconfig').util.root_pattern 'package.json',
