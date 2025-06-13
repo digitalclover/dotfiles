@@ -150,6 +150,15 @@ require('lazy').setup({
       -- See `:help telescope`
       -- See `:help telescope.setup()`
       require('telescope').setup {
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = { height = 0.95 },
+        },
+        pickers = {
+          lsp_references = {
+            show_line = false,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -271,6 +280,11 @@ require('lazy').setup({
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
       local servers = {
+        ruby_lsp = {
+          on_attach = on_attach,
+          root_dir = require('lspconfig').util.root_pattern '.ruby-version',
+          cmd = { '/home/mt-jmccarthy/.rbenv/shims/ruby-lsp' },
+        },
         ts_ls = {
           on_attach = on_attach,
           root_dir = require('lspconfig').util.root_pattern 'package.json',
@@ -289,11 +303,7 @@ require('lazy').setup({
         },
       }
       require('mason').setup()
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup { ensure_installed = { 'stylua' } }
 
       require('mason-lspconfig').setup {
         handlers = {
