@@ -463,7 +463,7 @@ require('lazy').setup({
     -- See `https://github.com/nvim-treesitter/nvim-treesitter-textobjects`
   },
 
-  { import = 'custom.plugins' },
+  { import = 'plugins' },
   -- See `:help lazy.nvim-🔌-plugin-spec`
 }, {
   ui = {
