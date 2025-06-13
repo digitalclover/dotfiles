@@ -7,6 +7,11 @@ return {
     },
     cmd = 'CopilotChat',
     opts = function()
+      vim.keymap.set('i', '<C-y>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
