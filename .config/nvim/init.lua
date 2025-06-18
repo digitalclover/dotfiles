@@ -29,6 +29,7 @@ vim.opt_local.conceallevel = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
+vim.opt.cmdheight = 0
 
 --  See `:help 'clipboard'`
 vim.schedule(function()

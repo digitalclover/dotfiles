@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local background = require("backgrounds")
 local mux = wezterm.mux
 
 local config = wezterm.config_builder()
@@ -30,13 +31,16 @@ config.enable_wayland = false
 config.show_close_tab_button_in_tabs = false
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
-config.tab_max_width = 24
+config.tab_max_width = 64
 config.colors = {
 	tab_bar = {
 		background = "#1a1b26",
 	},
 }
 
+config.window_padding = {
+	bottom = 0,
+}
 config.color_scheme = "tokyonight_moon"
 config.font = wezterm.font("SauceCodePro Nerd Font")
 config.use_ime = true
