@@ -1,4 +1,4 @@
-local bg_dir = ""
+local bg_dir = "/home/digclo/Pictures/Terminal Background/"
 local backgrounds = {
 	{
 		{
@@ -61,6 +61,48 @@ local backgrounds = {
 			height = "100%",
 			width = "100%",
 			opacity = 0.93,
+		},
+	},
+	{
+		{
+			source = {
+				File = {
+					path = bg_dir .. "twin_wp_both.jpg",
+				},
+			},
+			vertical_offset = "-20%",
+		},
+		{
+			source = {
+				Gradient = {
+					colors = { "#24283b", "#1a1b26" },
+					orientation = { Radial = { cx = 0.5, cy = 0.5, radius = 0.95 } },
+				},
+			},
+			height = "100%",
+			width = "100%",
+			opacity = 0.95,
+		},
+	},
+	{
+		{
+			source = {
+				File = {
+					path = bg_dir .. "Ggu0-ftWQAAZTpv.jpeg",
+				},
+			},
+			vertical_offset = "-100%",
+		},
+		{
+			source = {
+				Gradient = {
+					colors = { "#24283b", "#1a1b26" },
+					orientation = { Radial = { cx = 0.5, cy = 0.5, radius = 0.95 } },
+				},
+			},
+			height = "100%",
+			width = "100%",
+			opacity = 0.95,
 		},
 	},
 }

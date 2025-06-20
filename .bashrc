@@ -84,3 +84,6 @@ if [ $height -ge 32 ] && command -v fastfetch &> /dev/null; then
     fastfetch
 fi
 
+if [ -f ~/.rbenv/bin/rbenv ]; then
+ eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
+fi

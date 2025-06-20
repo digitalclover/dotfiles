@@ -10,7 +10,12 @@ return {
   dependencies = {
     'rcarriga/nvim-dap-ui',
     'nvim-neotest/nvim-nio',
-    'suketa/nvim-dap-ruby',
+    {
+      'suketa/nvim-dap-ruby',
+      config = function()
+        require('dap-ruby').setup()
+      end,
+    },
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},

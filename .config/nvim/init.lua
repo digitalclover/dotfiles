@@ -50,6 +50,13 @@ vim.keymap.set('n', '<C-Right>', '<C-w>l', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-Down>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-Up>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.jbuilder',
+  callback = function()
+    vim.bo.filetype = 'ruby'
+  end,
+})
+
 --  See `:help lua-guide-autocommands`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
