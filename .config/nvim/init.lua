@@ -49,13 +49,35 @@ vim.keymap.set('n', '<C-Left>', '<C-w>h', { desc = 'Move focus to the left windo
 vim.keymap.set('n', '<C-Right>', '<C-w>l', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-Down>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-Up>', '<C-w>k', { desc = 'Move focus to the upper window' })
-
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = '*.jbuilder',
   callback = function()
     vim.bo.filetype = 'ruby'
   end,
 })
+
+vim.keymap.set('n', '<C-A-j>', function()
+  local count = vim.v.count1
+  vim.cmd('move ' .. (vim.fn.line('.') + count))
+  vim.cmd('normal! ==')
+end, { desc = 'Move line down', noremap = true })
+
+vim.keymap.set('n', '<C-A-k>', function()
+  local count = vim.v.count1
+  vim.cmd('move ' .. (vim.fn.line('.') - count - 1))
+  vim.cmd('normal! ==')
+end, { desc = 'Move line up', noremap = true })
+
+vim.keymap.set('n', '<C-A-h>', function()
+  local count = vim.v.count1
+  vim.cmd('normal! ' .. count .. '<<')
+end, { desc = 'Shift line left', noremap = true })
+
+vim.keymap.set('n', '<C-A-l>', function()
+  local count = vim.v.count1
+  vim.cmd('normal! ' .. count .. '>>')
+end, { desc = 'Shift line right', noremap = true })
+
 
 --  See `:help lua-guide-autocommands`
 vim.api.nvim_create_autocmd('TextYankPost', {
