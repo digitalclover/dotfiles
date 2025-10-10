@@ -10,7 +10,11 @@ return {
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
-        auto_insert_mode = true,
+        auto_insert_mode = false,
+        auto_fold = true,
+        insert_at_end = true,
+        model = 'claude-sonnet-4',
+        tools = 'copilot',
         headers = {
           user = '  ' .. user .. ' ',
           assistant = '  Copilot ',
