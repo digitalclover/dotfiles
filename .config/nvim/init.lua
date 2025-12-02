@@ -58,16 +58,15 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 
 vim.keymap.set('n', '<C-A-j>', function()
   local count = vim.v.count1
-  vim.cmd('move ' .. (vim.fn.line('.') + count))
-  vim.cmd('normal! ==')
+  vim.cmd('move ' .. (vim.fn.line '.' + count))
+  vim.cmd 'normal! =='
 end, { desc = 'Move line down', noremap = true })
 
 vim.keymap.set('n', '<C-A-k>', function()
   local count = vim.v.count1
-  vim.cmd('move ' .. (vim.fn.line('.') - count - 1))
-  vim.cmd('normal! ==')
+  vim.cmd('move ' .. (vim.fn.line '.' - count - 1))
+  vim.cmd 'normal! =='
 end, { desc = 'Move line up', noremap = true })
-
 vim.keymap.set('n', '<C-A-h>', function()
   local count = vim.v.count1
   vim.cmd('normal! ' .. count .. '<<')
@@ -77,7 +76,6 @@ vim.keymap.set('n', '<C-A-l>', function()
   local count = vim.v.count1
   vim.cmd('normal! ' .. count .. '>>')
 end, { desc = 'Shift line right', noremap = true })
-
 
 --  See `:help lua-guide-autocommands`
 vim.api.nvim_create_autocmd('TextYankPost', {

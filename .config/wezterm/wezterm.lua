@@ -27,7 +27,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	title = wezterm.truncate_right(title, max_width - 2)
 end)
 
-config.enable_wayland = false
+config.enable_wayland = true
 config.show_close_tab_button_in_tabs = false
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
@@ -41,7 +41,8 @@ config.colors = {
 config.window_padding = {
 	bottom = 0,
 }
-config.color_scheme = "tokyonight_moon"
+-- config.color_scheme = "tokyonight_moon"
+config.color_scheme = 'Gruvbox Material (Gogh)'
 config.font = wezterm.font("SauceCodePro Nerd Font")
 config.use_ime = true
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
@@ -56,7 +57,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 end
 
 local bg_index = generateRandomIndex(backgrounds)
-config.background = backgrounds[bg_index]
+-- config.background = backgrounds[1]
+config.window_background_opacity = 0.95
 
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
