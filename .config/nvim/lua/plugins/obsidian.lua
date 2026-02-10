@@ -1,12 +1,11 @@
 return {
-  'epwalsh/obsidian.nvim',
-  version = '*',
-  lazy = true,
-  ft = 'markdown',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
+  "obsidian-nvim/obsidian.nvim",
+  version = "*",
+  ft = "markdown",
+  ---@module 'obsidian'
+  ---@type obsidian.config
   opts = {
+    legacy_commands = false,
     workspaces = (function()
       local workspaces = {}
       local prefix = 'OBSIDIAN_PATH_'

@@ -33,7 +33,7 @@ if [ -z $FOUND_DIR ]; then
   exit 1
 fi
 
-cd /usr/local/bin/
+cd ~/.local/bin/
 
 for dir in $(ls "$FOUND_DIR/bin/");
 do
