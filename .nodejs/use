@@ -3,6 +3,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# Download target tarball from https://nodejs.org/dist/
+
 if [ -f .nvmrc ]; then
   TARGET_VERSION="$(cat .nvmrc)"
 elif (( $# == 0 )); then
